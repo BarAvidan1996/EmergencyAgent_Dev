@@ -1,0 +1,217 @@
+/* Chat specific styles */
+.markdown-content {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.markdown-content p {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+}
+
+.markdown-content li {
+  margin-bottom: 0.25rem;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* RTL Support */
+body {
+  direction: rtl;
+}
+
+/* --- עיצוב חדש לאזור הצ'אט כולו --- */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  overflow-x: hidden;
+}
+
+.chat-messages {
+  flex: 1;
+  width: 100%;
+  max-width: 768px;
+  padding: 0 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* --- עיצוב חדש להודעות --- */
+.chat-message {
+  padding: 0.75rem 1rem;
+  border-radius: 1.5rem;
+  max-width: 75%;
+  font-size: 1rem;
+  line-height: 1.6;
+  word-break: break-word;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.chat-message.assistant {
+  background-color: #f3f4f6;
+  color: #111827;
+  align-self: flex-start;
+}
+
+.chat-message.user {
+  background-color: #6C5DD3;
+  color: white;
+  align-self: flex-end;
+}
+
+/* --- עיצוב לכפתור העתקה --- */
+.copy-button {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.copy-button:hover {
+  color: #6C5DD3;
+}
+
+/* --- עיצוב לאזור ההקלדה --- */
+.chat-input-form {
+  width: 100%;
+  max-width: 768px;
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: transparent;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  background-color: #f9fafb;
+  font-size: 1rem;
+  color: #111827;
+  text-align: start;
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: #6C5DD3;
+  box-shadow: 0 0 0 2px #6C5DD3;
+}
+
+.send-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #6C5DD3;
+  color: white;
+  font-weight: bold;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.send-button:hover {
+  background-color: #5847b6;
+}
+
+/* רספונסיביות */
+@media (max-width: 640px) {
+  .chat-message {
+    max-width: 85%;
+    font-size: 0.95rem;
+  }
+
+  .chat-input-form {
+    padding: 0.5rem;
+  }
+}
+
+.align-right {
+  align-self: flex-end;
+}
+.align-left {
+  align-self: flex-start;
+}
+
+body[dir="rtl"] .chat-input-form {
+  flex-direction: row-reverse;
+}
+
+.chat-input-form.rtl {
+  flex-direction: row-reverse;
+}
+.chat-input-form.ltr {
+  flex-direction: row;
+}
+
+.typing-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.typing-indicator span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: #6C5DD3;
+  border-radius: 50%;
+  animation: blink 1.4s infinite both;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%, 80%, 100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+} 
