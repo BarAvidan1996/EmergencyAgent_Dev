@@ -13,6 +13,7 @@ const googleMapsClient = new GoogleMapsClient({});
 export const findNearestShelter = async (req: AuthRequest, res: Response) => {
   try {
     const { latitude, longitude } = req.query;
+    const radius = Math.min(Number(req.query.radius) || 3000, 3000);
 
     if (!latitude || !longitude) {
       return res.status(400).json({ message: 'Latitude and longitude are required' });
@@ -23,7 +24,7 @@ export const findNearestShelter = async (req: AuthRequest, res: Response) => {
       params: {
         layer: 'SHELTER',
         type: 'Point',
-        radius: 5000, // 5km radius
+        radius,
         lat: latitude,
         lon: longitude,
         apikey: process.env.GOVMAP_API_KEY
@@ -73,6 +74,7 @@ export const findNearestShelter = async (req: AuthRequest, res: Response) => {
 export const searchSheltersByAddress = async (req: AuthRequest, res: Response) => {
   try {
     const { address } = req.query;
+    const radius = Math.min(Number(req.query.radius) || 3000, 3000);
 
     if (!address) {
       return res.status(400).json({ message: 'Address is required' });
@@ -97,7 +99,7 @@ export const searchSheltersByAddress = async (req: AuthRequest, res: Response) =
       params: {
         layer: 'SHELTER',
         type: 'Point',
-        radius: 5000, // 5km radius
+        radius,
         lat: location.lat,
         lon: location.lng,
         apikey: process.env.GOVMAP_API_KEY

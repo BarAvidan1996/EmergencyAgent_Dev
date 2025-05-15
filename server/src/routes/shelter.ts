@@ -12,12 +12,20 @@ const findNearestShelterValidation = [
     .withMessage('Please provide a valid latitude within Israel'),
   query('longitude')
     .isFloat({ min: 34.2, max: 35.9 })
-    .withMessage('Please provide a valid longitude within Israel')
+    .withMessage('Please provide a valid longitude within Israel'),
+  query('radius')
+    .optional()
+    .isInt({ min: 100, max: 3000 })
+    .withMessage('Radius must be between 100 and 3000 meters')
 ];
 
 // Search shelters by address validation
 const searchSheltersByAddressValidation = [
-  query('address').notEmpty().withMessage('Address is required')
+  query('address').notEmpty().withMessage('Address is required'),
+  query('radius')
+    .optional()
+    .isInt({ min: 100, max: 3000 })
+    .withMessage('Radius must be between 100 and 3000 meters')
 ];
 
 router.get(
